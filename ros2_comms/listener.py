@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 import serial
+import threading
 
 
 class Listener(Node):
@@ -23,6 +24,10 @@ class Listener(Node):
         except serial.SerialException as a:
             self.get_logger().error(f'Failed to open serial port: {a}')
             self.ser = None
+
+        if self.ser and self.ser.is_open:
+            self.uart_thread = threading.Thread(target=self.read_uart, daemon=True)
+            self.uart_thread.start
 
     def listener_callback(self, msg):
         command = msg.data
