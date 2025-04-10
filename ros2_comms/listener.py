@@ -35,25 +35,25 @@ class Listener(Node):
 
         # Send corresponding command to ESP32 over UART
         if command == 'w':
-            self.send_uart_command.encode(0xA1)
+            self.send_uart_command(0xA1)
         elif command == 'a':
-            self.send_uart_command.encode(0xA2)
+            self.send_uart_command(0xA2)
         elif command == 's':
-            self.send_uart_command.encode(0xA3)
+            self.send_uart_command(0xA3)
         elif command == 'd':
-            self.send_uart_command.encode(0xA4)
+            self.send_uart_command(0xA4)
         elif command == '1':
-            self.send_uart_command.encode(0x01)
+            self.send_uart_command(0x01)
         elif command == '2':
-            self.send_uart_command.encode(0x02)
+            self.send_uart_command(0x02)
         elif command == '3':
-            self.send_uart_command.encode(0x03)
+            self.send_uart_command(0x03)
 
-    def send_uart_command(self, command):
+    def send_uart_command(self, command_byte):
         if self.ser:
             try:
-                self.ser.write(command.encode('utf-8'))
-                self.get_logger().info(f"Sent command: {command}")
+                self.ser.write(bytes([command_byte]))
+                self.get_logger().info(f"Sent command: {command_byte}")
             except serial.SerialException as a:
                 self.get_logger().error(f'Error sending UART command: {a}')
 
