@@ -7,7 +7,7 @@ import getch
 class KeyboardTalker(Node):
     def __init__(self):
         super().__init__('keyboard_commands')
-        self.publisehr_ = self.create_publisher(String, 'keyboard_input', 10)
+        self.publisher_ = self.create_publisher(String, 'keyboard_input', 10)
         self.get_logger().info('Keyboard Talker Node Started. '
                                'Type to send messages. Press Esc to quit.')
 
