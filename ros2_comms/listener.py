@@ -27,7 +27,7 @@ class Listener(Node):
 
         if self.ser and self.ser.is_open:
             self.uart_thread = threading.Thread(target=self.read_uart, daemon=True)
-            self.uart_thread.start
+            self.uart_thread.start()
 
     def listener_callback(self, msg):
         command = msg.data
