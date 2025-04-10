@@ -63,12 +63,14 @@ class Listener(Node):
     def read_uart(self):
         while rclpy.ok() and self.ser and self.ser.is_open:
             try:
-                if self.ser.in_waiting > 0:
-                    data = self.ser.readline().decode().strip()
-                    if data:
-                        self.get_logger().info(f"Received from ESP32: {data.decode()}")
+                data = self.ser.read_all()
+                self.get_logger().info(f"Received from ESP32: {data.decode()}")
+                # if self.ser.in_waiting > 0:
+                #     data = self.ser.readline().decode().strip()
+                #     if data:
+                #         self.get_logger().info(f"Received from ESP32: {data.decode()}")
             except serial.SerialException as a:
-                self.get_logger().error(f'UART read filaed: {a}')
+                self.get_logger().error(f'UART read failed: {a}')
                 break
 
 
