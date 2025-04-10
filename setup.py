@@ -20,8 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'talker = ros2_bot.talker:main'
-            'listener = ros2_bot.listener:main'
+            'talker = ros2_comms.talker:main'
+            'listener = ros2_comms.listener:main'
         ],
     },
 )
