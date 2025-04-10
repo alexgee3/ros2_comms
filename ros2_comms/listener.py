@@ -34,19 +34,21 @@ class Listener(Node):
         self.get_logger().info(f"Received command: {command}")
 
         # Send corresponding command to ESP32 over UART
-        if command == 'w':
+        if command == 'w':  # Drive forward
             self.send_uart_command(0xA1)
-        elif command == 'a':
+        elif command == 'a':  # Rotate left
             self.send_uart_command(0xA2)
-        elif command == 's':
+        elif command == 's':  # Drive backward
             self.send_uart_command(0xA3)
-        elif command == 'd':
+        elif command == 'd':  # Rotate right
             self.send_uart_command(0xA4)
-        elif command == '1':
+        elif command == 'q':  # Stop
+            self.send_uart_command(0xA5)
+        elif command == '1':  # Request Battery Command 1
             self.send_uart_command(0x01)
-        elif command == '2':
+        elif command == '2':  # Request Battery Command 2
             self.send_uart_command(0x02)
-        elif command == '3':
+        elif command == '3':  # Request Battery Command 3
             self.send_uart_command(0x03)
 
     def send_uart_command(self, command_byte):
