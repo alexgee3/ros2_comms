@@ -6,12 +6,12 @@ import serial
 
 class Listener(Node):
     def __init__(self):
-        super().__init__('listener')
+        super().__init__('keyboard_listener')
 
         # Create subscriber to listen to 'command' topic
         self.subscription = self.create_subscription(
             String,
-            'keyboard_commands',
+            'keyboard_input',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning
