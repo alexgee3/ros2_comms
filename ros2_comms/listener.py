@@ -42,8 +42,12 @@ class Listener(Node):
             self.send_uart_command(0xA3)
         elif command == 'd':  # Rotate right
             self.send_uart_command(0xA4)
-        elif command == 'q':  # Stop
+        elif command == ' ':  # Stop
             self.send_uart_command(0xA5)
+        elif command == 'q':  # Decrease duty cycle by 10
+            self.send_uart_command(0xA6)
+        elif command == 'e':  # Increase duty cycle by 10
+            self.send_uart_command(0xA7)
         elif command == '1':  # Request Battery Command 1
             self.send_uart_command(0x01)
         elif command == '2':  # Request Battery Command 2
