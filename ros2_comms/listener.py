@@ -26,7 +26,8 @@ class Listener(Node):
             self.ser = None
 
         if self.ser and self.ser.is_open:
-            self.uart_thread = threading.Thread(target=self.read_uart, daemon=True)
+            self.uart_thread = threading.Thread(target=self.read_uart,
+                                                daemon=True)
             self.uart_thread.start()
 
     def listener_callback(self, msg):
@@ -72,10 +73,6 @@ class Listener(Node):
                 try:
                     data = self.ser.readline().decode().strip()
                     self.get_logger().info(f"Received from ESP32: {data}")
-                    # if self.ser.in_waiting > 0:
-                    #     data = self.ser.readline().decode().strip()
-                    #     if data:
-                    #         self.get_logger().info(f"Received from ESP32: {data.decode()}")
                 except serial.SerialException as a:
                     self.get_logger().error(f'UART read failed: {a}')
                     break
