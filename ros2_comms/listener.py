@@ -45,10 +45,18 @@ class Listener(Node):
             self.send_uart_command(0xA4)
         elif command == ' ':  # Stop
             self.send_uart_command(0xA5)
-        elif command == 'q':  # Decrease duty cycle by 10
+        elif command == 'j':  # Decrease forward duty cycle by 10
             self.send_uart_command(0xA6)
-        elif command == 'e':  # Increase duty cycle by 10
+        elif command == 'u':  # Increase forward duty cycle by 10
             self.send_uart_command(0xA7)
+        elif command == 'k':  # Decrease rotate duty cycle by 10
+            self.send_uart_command(0xA8)
+        elif command == 'i':  # Increase rotate duty cycle by 10
+            self.send_uart_command(0xA9)
+        elif command == 'l':  # Decrease backward duty cycle by 10
+            self.send_uart_command(0xAA)
+        elif command == 'o':  # Increase backward duty cycle by 10
+            self.send_uart_command(0xAB)
         elif command == '1':  # Request Battery Command 1
             self.send_uart_command(0x01)
         elif command == '2':  # Request Battery Command 2
