@@ -7,7 +7,7 @@ import threading
 
 class Listener(Node):
     def __init__(self):
-        super().__init__('keyboard_listener')
+        super().__init__('listener')
 
         # Create subscriber to listen to 'command' topic
         self.subscription = self.create_subscription(
