@@ -14,7 +14,7 @@ class KeyboardTalker(Node):
     def start_publishing(self):
         while rclpy.ok():
             key = getch.getch()
-            if key == '\x1b':  # Escape key
+            if key == '\x1b':  # press Esc key to exit
                 self.get_logger().info('Exiting keyboard talker')
                 break
             msg = String()
